@@ -1,0 +1,56 @@
+services:
+  mysql:
+    image: mysql:8.2
+    container_name: dockerized_mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=john
+      - MYSQL_PASSWORD=doe
+      - MYSQL_DATABASE=dockerized
+    volumes:
+      - type: volume
+        source: mysql-data
+        target: /var/lib/mysql
+    networks:
+      - localnet
+
+  backend:
+    depends_on:
+      - mysql
+    container_name: dockerized_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOSTNAME=mysql
+      - DB_PORT=3306
+      - DB_USERNAME=john
+      - DB_PASSWORD=doe
+      - DB_DATABASE=dockerized
+    ports:
+      - "8080:8080"
+    networks:
+      - localnet
+
+  frontend:
+    depends_on:
+      - backend
+    container_name: dockerized_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - localnet
+
+volumes:
+  mysql-data:
+
+
+networks:
+  localnet:
+    driver: bridge
