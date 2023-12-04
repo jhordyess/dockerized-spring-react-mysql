@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "dockerComposeFile": "../docker-compose.dev.yml",
+  "service": "backend",
+  "shutdownAction": "none",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
+        "redhat.vscode-xml"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "java.configuration.updateBuildConfiguration": "interactive",
+        "redhat.telemetry.enabled": false
+      }
+    }
+  },
+  "postCreateCommand": "mvn clean dependency:resolve",
+  "workspaceFolder": "/dockerized/backend"
+}

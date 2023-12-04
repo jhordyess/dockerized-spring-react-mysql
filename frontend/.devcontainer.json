@@ -1,0 +1,16 @@
+{
+  "name": "frontend",
+  "dockerComposeFile": "../docker-compose.dev.yml",
+  "service": "frontend",
+  "shutdownAction": "none",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      }
+    }
+  },
+  "postCreateCommand": "sudo npm i npm -g && npm i",
+  "workspaceFolder": "/dockerized/frontend"
+}

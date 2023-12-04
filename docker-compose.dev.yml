@@ -1,0 +1,67 @@
+services:
+  mysql:
+    image: mysql:8.2
+    container_name: dockerized_mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+    volumes:
+      - type: volume
+        source: mysql-data
+        target: /var/lib/mysql
+    networks:
+      - localnet
+
+  pma:
+    depends_on:
+      - mysql
+    image: phpmyadmin
+    container_name: dockerized_pma
+    restart: always
+    ports:
+      - 81:80
+    environment:
+      - PMA_HOST=mysql
+    networks:
+      - localnet
+
+  backend:
+    depends_on:
+      - mysql
+    container_name: dockerized_backend
+    image: jhordyess/java:17-3
+    volumes:
+      - .:/dockerized:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    environment:
+      - DB_HOSTNAME=mysql
+      - DB_PORT=3306
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_DATABASE
+    networks:
+      - localnet
+
+  frontend:
+    depends_on:
+      - backend
+    container_name: dockerized_frontend
+    image: jhordyess/node:18
+    volumes:
+      - .:/dockerized:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    networks:
+      - localnet
+
+volumes:
+  mysql-data:
+
+
+networks:
+  localnet:
+    driver: bridge
