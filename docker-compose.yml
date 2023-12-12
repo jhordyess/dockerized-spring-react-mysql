@@ -21,6 +21,7 @@ services:
     depends_on:
       - mysql
     container_name: dockerized_backend
+    restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -38,6 +39,7 @@ services:
     depends_on:
       - backend
     container_name: dockerized_frontend
+    restart: always
     build:
       context: ./frontend
       dockerfile: Dockerfile
