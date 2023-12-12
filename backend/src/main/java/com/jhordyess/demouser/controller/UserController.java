@@ -16,7 +16,7 @@ import com.jhordyess.demouser.domain.UserRepository;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "http://localhost", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = {"http://localhost", "http://localhost:5173"}, methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserController {
 
   private UserRepository userRepository;
