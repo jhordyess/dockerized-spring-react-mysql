@@ -1,5 +1,8 @@
 FROM node:18-alpine as build
 
+ARG VITE_BACKEND_HOST
+ENV VITE_BACKEND_HOST=$VITE_BACKEND_HOST
+
 WORKDIR /app
 
 COPY package.json package-lock.json ./

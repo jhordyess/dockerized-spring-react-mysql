@@ -39,9 +39,8 @@ services:
       - .:/dockerized:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     environment:
-      - DB_HOSTNAME=mysql
-      - DB_PORT=3306
-      - DB_USERNAME
+      - DB_HOSTNAME=mysql:3306
+      - DB_USER
       - DB_PASSWORD
       - DB_DATABASE
     networks:
@@ -55,6 +54,8 @@ services:
     volumes:
       - .:/dockerized:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
+    environment:
+      - VITE_BACKEND_HOST
     networks:
       - localnet
 

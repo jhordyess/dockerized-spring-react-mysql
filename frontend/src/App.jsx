@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 
+const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST | "http://localhost:8080";
+
 const fetchUsers = async () => {
   try {
-    const res = await fetch("http://localhost:8080/api/user");
+    const res = await fetch(`${BACKEND_HOST}/api/user`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -12,7 +14,7 @@ const fetchUsers = async () => {
 
 const saveUser = async (user) => {
   try {
-    await fetch("http://localhost:8080/api/user", {
+    await fetch(`${BACKEND_HOST}/api/user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),

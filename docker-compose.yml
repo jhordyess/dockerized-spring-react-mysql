@@ -7,9 +7,9 @@ services:
       - 3306:3306
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_USER=john
-      - MYSQL_PASSWORD=doe
-      - MYSQL_DATABASE=dockerized
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
     volumes:
       - type: volume
         source: mysql-data
@@ -25,11 +25,10 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     environment:
-      - DB_HOSTNAME=mysql
-      - DB_PORT=3306
-      - DB_USERNAME=john
-      - DB_PASSWORD=doe
-      - DB_DATABASE=dockerized
+      - DB_HOST=mysql:3306
+      - DB_USER
+      - DB_PASSWORD
+      - DB_DATABASE
     ports:
       - "8080:8080"
     networks:
@@ -42,6 +41,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - VITE_BACKEND_HOST
     ports:
       - "80:80"
     networks:
