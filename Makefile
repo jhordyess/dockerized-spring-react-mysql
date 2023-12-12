@@ -5,4 +5,4 @@ stop:
 	docker compose stop
 
 clean:
-	docker compose down
+	docker compose down -v

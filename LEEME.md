@@ -46,7 +46,7 @@ docker compose up -d
 make clean
 
 # Si no tienes 'make' instalado, usa:
-docker compose down
+docker compose down -v
 ```
 
 Tenga en cuenta que los scripts de producción son solo de muestra, y puede requerir algunos ajustes para su uso en producción real.
