@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST | "http://localhost:8080";
+const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST || "http://localhost:8080";
 
 const fetchUsers = async () => {
   try {
