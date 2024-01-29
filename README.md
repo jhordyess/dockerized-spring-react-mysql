@@ -2,7 +2,7 @@
 
 Basic Full Stack App with Spring Boot, React, and MySQL, all running in Docker containers.
 
-The goal of this project is to demonstrate how Docker can be used to run a full stack application, helping to avoid the "works on my machine" problem, and also to make it easier to test a full stack application without having to install all the dependencies or complex configurations.
+The goal of this project is to demonstrate how Docker can be used to run a full stack application, helping to avoid the "works on my computer" problem, and also to make it easier to test a full stack application without having to install all the dependencies or complex configurations.
 
 Do you speak Español?: 👉 [Léeme](./LEEME.md)
 
