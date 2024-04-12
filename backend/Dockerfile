@@ -6,7 +6,7 @@ COPY pom.xml ./
 
 COPY src src/
 
-RUN mvn clean install -DskipTests
+RUN mvn clean package -D skipTests
 
 # Run the app in a minimal java container
 
