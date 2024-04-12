@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST}/${DB_DATABASE}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
